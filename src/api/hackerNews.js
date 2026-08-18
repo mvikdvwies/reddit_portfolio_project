@@ -1,7 +1,12 @@
 const hackerNewsApi = {
-  getTopStories: async () => {
+  getStories: async (feedType) => {
+    const feeds = {
+      top: "topstories",
+      new: "newstories",
+      best: "beststories",
+    };
     const response = await fetch(
-      "https://hacker-news.firebaseio.com/v0/topstories.json",
+      `https://hacker-news.firebaseio.com/v0/${feeds[feedType]}.json`,
     );
     const data = await response.json();
     const ids = data.slice(0, 20);
