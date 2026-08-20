@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import FeedSwitcher from "./features/posts/FeedSwitcher";
 import {
   fetchStories,
   selectFeedType,
@@ -7,6 +8,7 @@ import {
   selectPostsError,
   selectPostsStatus,
 } from "./features/posts/postsSlice";
+import "./index.css";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -22,10 +24,10 @@ export default function App() {
 
   return (
     <div>
-      <h1>Hacker News Client</h1>
-      <button onClick={() => dispatch(fetchStories("top"))}>Top</button>
-      <button onClick={() => dispatch(fetchStories("new"))}>New</button>
-      <button onClick={() => dispatch(fetchStories("best"))}>Best</button>
+      <FeedSwitcher
+        feedType={feedType}
+        onSelectFeed={(feedType) => dispatch(fetchStories(feedType))}
+      />
       {postsStatus === "loading" && <div>Loading...</div>}
       {postsStatus === "succeeded" && (
         <div>
