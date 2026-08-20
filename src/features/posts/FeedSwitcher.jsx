@@ -1,28 +1,19 @@
 import "./FeedSwitcher.css";
 
+const feeds = ["top", "new", "best"]; /*массив типов лент*/
+
 export default function FeedSwitcher({ feedType, onSelectFeed }) {
   return (
-    <div>
-      <button
-        className={feedType === "top" ? "active" : "button"}
-        onClick={() => onSelectFeed("top")}
-      >
-        Top
-      </button>
-
-      <button
-        className={feedType === "new" ? "active" : "button"}
-        onClick={() => onSelectFeed("new")}
-      >
-        New
-      </button>
-
-      <button
-        className={feedType === "best" ? "active" : "button"}
-        onClick={() => onSelectFeed("best")}
-      >
-        Best
-      </button>
+    <div className="feed-switcher">
+      {feeds.map((feed) => (
+        <button
+          key={feed}
+          onClick={() => onSelectFeed(feed)}
+          className={feedType === feed ? "button active" : "button"} //если тип ленты равен текущей ленте, то добавляем класс active
+        >
+          {feed}
+        </button>
+      ))}
     </div>
   );
 }

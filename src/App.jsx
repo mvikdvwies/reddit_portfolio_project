@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FeedSwitcher from "./features/posts/FeedSwitcher";
+import Post from "./features/posts/Post";
 import {
   fetchStories,
   selectFeedType,
@@ -32,7 +33,7 @@ export default function App() {
       {postsStatus === "succeeded" && (
         <div>
           {posts.map((post) => (
-            <div key={post.id}>{post.title}</div>
+            <Post key={post.id} post={post} />
           ))}
         </div>
       )}

@@ -1,3 +1,28 @@
+/*общие стили для 3 кнопок сразу*/
+.feed-switcher {
+  display: flex; /*оформление в виде горизонтального списка*/
+  justify-content: center; /*центрирование кнопок*/
+  gap: 10px; /*отступ между кнопками*/
+  margin-bottom: 20px; /*отступ снизу*/
+}
+
+/*стили для кнопок feed switcher индивидуально*/
+.button {
+  background: #f3f3f3; /*цвет фона*/
+  border: 1px solid #ddd; /*цвет границы*/
+  border-radius: 8px; /*закругление углов*/
+  font-size: 1rem; /*размер шрифта*/
+  font-weight: 600; /*жирность шрифта*/
+  padding: 10px 20px; /*внутренние отступы*/
+  cursor: pointer; /*курсор при наведении*/
+  text-transform: capitalize; /*преобразует текст в заглавные буквы*/
+  transition: /*плавный переход*/
+    background 0.2s,
+    /*изменение цвета фона*/ border-color 0.2s,
+    /*изменение цвета границы*/ color 0.2s; /*изменение цвета текста*/
+}
+
+/*стили для активной кнопки feed switcher*/
 .active {
   color: red;
 }
