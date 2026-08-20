@@ -20,13 +20,13 @@ export default function App() {
 
   useEffect(() => {
     dispatch(fetchStories("top"));
-  }, [dispatch]);
+  }, [dispatch]); //загружаем ленту при загрузке компонента
 
   return (
     <div>
       <FeedSwitcher
-        feedType={feedType}
-        onSelectFeed={(feedType) => dispatch(fetchStories(feedType))}
+        feedType={feedType} //передаем тип ленты
+        onSelectFeed={(feedType) => dispatch(fetchStories(feedType))} //передаем функцию на выбор ленты
       />
       {postsStatus === "loading" && <div>Loading...</div>}
       {postsStatus === "succeeded" && (

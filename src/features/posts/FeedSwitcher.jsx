@@ -1,4 +1,4 @@
-import "./feedSwitcher.css";
+import "./FeedSwitcher.css";
 
 export default function FeedSwitcher({ feedType, onSelectFeed }) {
   return (
