@@ -10,3 +10,17 @@
   font-size: 1.1rem; /*размер шрифта*/
   margin: 0; /*отступ сверху и снизу*/
 }
+
+/*это применяется ко всем ссылкам постов*/
+.post-link {
+  text-decoration: none; /*убирает подчеркивание ссылки*/
+}
+
+.post-link:hover {
+  text-decoration: underline; /*подчеркивает ссылку при наведении*/
+}
+
+.post-meta {
+  font-size: 0.8rem; /*размер шрифта*/
+  color: #666; /*цвет текста*/
+}
