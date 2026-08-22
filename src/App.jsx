@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FeedSwitcher from "./features/posts/FeedSwitcher";
-import Post from "./features/posts/Post";
+import PostsList from "./features/posts/PostsList";
 import {
   fetchStories,
   selectFeedType,
@@ -9,6 +9,7 @@ import {
   selectPostsError,
   selectPostsStatus,
 } from "./features/posts/postsSlice";
+import SearchBar from "./features/posts/SearchBar";
 import "./index.css";
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
   const postsError = useSelector(selectPostsError);
   //читает из redux store тип ленты
   const feedType = useSelector(selectFeedType);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     dispatch(fetchStories("top"));
@@ -25,22 +27,19 @@ export default function App() {
 
   return (
     <div>
+      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <FeedSwitcher
         feedType={feedType} //передаем тип ленты
         onSelectFeed={(feedType) => dispatch(fetchStories(feedType))} //передаем функцию на выбор ленты
       />
-      {postsStatus === "loading" && <div>Loading...</div>}
-      {postsStatus === "succeeded" && (
-        <div>
-          {posts.map((post) => (
-            <Post key={post.id} post={post} />
-          ))}
-        </div>
-      )}
-      {postsStatus === "failed" && <div>Error: {postsError}</div>}
-      {postsStatus === "failed" && (
-        <button onClick={() => dispatch(fetchStories(feedType))}>Retry</button>
-      )}
+      <PostsList
+        postsStatus={postsStatus}
+        posts={posts}
+        postsError={postsError}
+        feedType={feedType}
+        onRetry={() => dispatch(fetchStories(feedType))}
+        searchQuery={searchQuery}
+      />
     </div>
   );
 }
